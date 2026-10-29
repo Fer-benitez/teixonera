@@ -85,7 +85,29 @@
   h1.title{font-size:22px;color:var(--navy-darker);margin-bottom:6px;}
   p.subtitle{font-size:14px;color:var(--muted);margin-bottom:24px;line-height:1.6;}
 
-  .form-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px 22px;margin-bottom:20px;}
+  .form-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px 22px;margin-bottom:20px;border-top:3px solid transparent;}
+  .card-heading{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+  .card-heading .icon{
+    width:34px;height:34px;border-radius:10px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .card-heading .icon svg{width:17px;height:17px;}
+  .card-heading h3{
+    font-family:'Montserrat',sans-serif;font-weight:700;font-size:12.5px;
+    color:var(--navy-darker);text-transform:uppercase;letter-spacing:0.05em;
+  }
+  .form-card.accent-navy{border-top-color:#346B93;}
+  .form-card.accent-navy .icon{background:#e8f0f7;color:#2a5a84;}
+  .form-card.accent-teal{border-top-color:#2a9d8f;}
+  .form-card.accent-teal .icon{background:#e3f6f4;color:#1f7a6f;}
+  .form-card.accent-gold{border-top-color:#c9a227;}
+  .form-card.accent-gold .icon{background:#fdf6e3;color:#9c7a14;}
+  .form-card.accent-plum{border-top-color:#8e5572;}
+  .form-card.accent-plum .icon{background:#f7ecf1;color:#79405e;}
+  .form-card.accent-orange{border-top-color:var(--orange);}
+  .form-card.accent-orange .icon{background:#fdeee0;color:#b5651d;}
+  .form-card.accent-slate{border-top-color:#8a98a8;}
+  .form-card.accent-slate .icon{background:#eef1f5;color:#5b6a7c;}
   .field{margin-bottom:18px;}
   .field:last-child{margin-bottom:0;}
   .field label{font-size:12px;font-weight:700;color:var(--navy-dark);text-transform:uppercase;letter-spacing:0.03em;margin-bottom:8px;display:block;}
@@ -222,21 +244,31 @@
   <p class="subtitle" data-i18n="subtitleCta" style="font-weight:600;color:var(--navy-dark);">Rellena tus datos y te contactamos para organizar la visita.</p>
 
   <form id="leadForm">
-    <div class="form-card">
+    <div class="form-card accent-navy">
+      <div class="card-heading">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7.5 8-7.5s8 3.1 8 7.5"/></svg></span>
+        <h3 data-i18n="cardContacto">Contacto</h3>
+      </div>
       <div class="field">
         <label for="nombre" data-i18n="labelNombre">Nombre</label>
         <input type="text" id="nombre" required>
       </div>
-      <div class="field">
+      <div class="field" style="margin-bottom:0;">
         <label for="telefono" data-i18n="labelTelefono">WhatsApp / Teléfono</label>
         <input type="tel" id="telefono" required>
+      </div>
+    </div>
+
+    <div class="form-card accent-teal">
+      <div class="card-heading">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.5 8.5 0 0 1-9.3 8.47 8.6 8.6 0 0 1-2.75-.67L3 21l1.73-5.17a8.5 8.5 0 1 1 16.27-4.33z"/></svg></span>
+        <h3 data-i18n="cardSobreVosotros">Sobre vosotros</h3>
       </div>
       <div class="field">
         <label for="presentacion" data-i18n="labelPresentacion">Cuéntanos un poco sobre ti (o vosotros)</label>
         <textarea id="presentacion" required data-i18n-placeholder="placeholderPresentacion" placeholder="¿Sois pareja, familia, compañeros de piso? ¿Alguna mascota?..."></textarea>
       </div>
-
-      <div class="field">
+      <div class="field" style="margin-bottom:0;">
         <label data-i18n="labelOcupantes">¿Cuántas personas vivirán en el piso?</label>
         <div class="choice-group" id="ocupantesGroup">
           <button type="button" class="choice-btn" data-val="1">1</button>
@@ -247,26 +279,43 @@
         </div>
         <p class="choice-error" id="ocupantesError" data-i18n="selectError">Selecciona una opción.</p>
       </div>
+    </div>
 
+    <div class="form-card accent-gold">
+      <div class="card-heading">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 13h18"/></svg></span>
+        <h3 data-i18n="cardLaboral">Situación laboral</h3>
+      </div>
+      <div class="field">
+        <label for="trabajo" data-i18n="labelTrabajo">¿A qué os dedicáis?</label>
+        <textarea id="trabajo" required data-i18n-placeholder="placeholderTrabajo" placeholder="Ej. Trabajo indefinido en... / Autónomo desde..."></textarea>
+      </div>
       <div class="field">
         <label data-i18n="labelFirmante1">Situación laboral del primer firmante</label>
         <div class="choice-group" id="firmante1Group">
-          <button type="button" class="choice-btn" data-val="Asalariado" data-i18n="btnAsalariado">Asalariado/a</button>
+          <button type="button" class="choice-btn" data-val="Asalariado +1 año" data-i18n="btnAsalariadoMas1">Asalariado/a (+1 año antigüedad)</button>
+          <button type="button" class="choice-btn" data-val="Asalariado -1 año" data-i18n="btnAsalariadoMenos1">Asalariado/a (-1 año antigüedad)</button>
           <button type="button" class="choice-btn" data-val="Autónomo" data-i18n="btnAutonomo">Autónomo/a</button>
         </div>
         <p class="choice-error" id="firmante1Error" data-i18n="selectError">Selecciona una opción.</p>
       </div>
-
-      <div class="field">
+      <div class="field" style="margin-bottom:0;">
         <label data-i18n="labelFirmante2">Situación laboral del segundo firmante (si lo hay)</label>
         <div class="choice-group" id="firmante2Group">
-          <button type="button" class="choice-btn" data-val="Asalariado" data-i18n="btnAsalariado">Asalariado/a</button>
+          <button type="button" class="choice-btn" data-val="Asalariado +1 año" data-i18n="btnAsalariadoMas1">Asalariado/a (+1 año antigüedad)</button>
+          <button type="button" class="choice-btn" data-val="Asalariado -1 año" data-i18n="btnAsalariadoMenos1">Asalariado/a (-1 año antigüedad)</button>
           <button type="button" class="choice-btn" data-val="Autónomo" data-i18n="btnAutonomo">Autónomo/a</button>
           <button type="button" class="choice-btn" data-val="No hay segundo firmante" data-i18n="btnSinSegundo">No hay segundo firmante</button>
         </div>
         <p class="choice-error" id="firmante2Error" data-i18n="selectError">Selecciona una opción.</p>
       </div>
+    </div>
 
+    <div class="form-card accent-plum">
+      <div class="card-heading">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M15.2 8.8a4 4 0 1 0 0 6.4M8 11h5M8 13h4"/></svg></span>
+        <h3 data-i18n="cardIngresos">Ingresos</h3>
+      </div>
       <div class="field">
         <label for="ingresos" data-i18n="labelIngresos">Ingresos netos mensuales (de los firmantes, juntos)</label>
         <p class="field-note" id="alquilerRefText" style="margin-bottom:8px;"></p>
@@ -274,19 +323,13 @@
         <p class="field-note" id="ingresosPorcentaje" style="margin-top:8px;display:none;"></p>
         <p class="choice-error" id="ingresosError" data-i18n="alertIngresos">Indica vuestros ingresos aproximados.</p>
       </div>
-
-      <div class="field">
+      <div class="field" style="margin-bottom:0;">
         <label data-i18n="labelTipoTrabajador">¿Dónde trabajas?</label>
         <div class="choice-group" id="tipoTrabajadorGroup">
           <button type="button" class="choice-btn" data-val="Trabajo en España" data-i18n="btnTrabajoEspana">Trabajo en España</button>
           <button type="button" class="choice-btn" data-val="Nómada digital" data-i18n="btnNomadaDigital">Soy nómada digital</button>
         </div>
         <p class="choice-error" id="tipoTrabajadorError" data-i18n="selectError">Selecciona una opción.</p>
-      </div>
-
-      <div class="field">
-        <label for="trabajo" data-i18n="labelTrabajo">¿A qué os dedicáis y cuánto ingresáis aproximadamente?</label>
-        <textarea id="trabajo" required data-i18n-placeholder="placeholderTrabajo" placeholder="Ej. Trabajo indefinido en... / Autónomo desde..., ingresos aprox. de..."></textarea>
       </div>
     </div>
 
@@ -300,7 +343,11 @@
       </ul>
     </div>
 
-    <div class="form-card">
+    <div class="form-card accent-orange">
+      <div class="card-heading">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
+        <h3 data-i18n="cardVisita">Visita</h3>
+      </div>
       <div class="field" style="margin-bottom:0;">
         <label data-i18n="labelVisita">¿Cuándo puedes hacer la visita?</label>
         <div class="choice-group" id="visitaGroup">
@@ -310,10 +357,15 @@
         </div>
         <label id="visitaHoraLabel" style="display:none;margin-top:14px;" data-i18n="labelFranja">¿En qué franja horaria?</label>
         <input type="text" id="visitaOtro" style="display:none;margin-top:8px;" data-i18n-placeholder="placeholderFranja" placeholder="Ej. Por la tarde, a partir de las 18h...">
+        <p class="choice-error" id="visitaError" data-i18n="alertVisita">Indica cuándo puedes hacer la visita.</p>
       </div>
     </div>
 
-    <div class="form-card">
+    <div class="form-card accent-slate">
+      <div class="card-heading">
+        <span class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2.5l7.5 3V11c0 5-3.2 8.8-7.5 10.5C7.7 19.8 4.5 16 4.5 11V5.5z"/></svg></span>
+        <h3 data-i18n="cardPrivacidad">Privacidad</h3>
+      </div>
       <details class="privacy-details">
         <summary data-i18n="privacyResumen">Cómo tratamos tus datos (RGPD) — toca para leerlo entero</summary>
         <p class="field-note" style="margin-top:10px;line-height:1.7;" data-i18n="privacyTexto">Responsable: FINCAS A.G. NÚÑEZ, S.L. — NIF B60465804. Finalidad: gestionar tu interés en el piso y organizar la visita. Legitimación: tu consentimiento, al marcar la casilla y enviar este formulario. Destinatarios: tus datos podrán cederse al propietario del inmueble — no se ceden a terceros para otros fines. Conservación: mientras dure el proceso de selección del inquilino. Derechos: puedes acceder, rectificar, suprimir, oponerte, limitar o solicitar la portabilidad de tus datos escribiendo a info@agenapisos.com. También puedes reclamar ante la Agencia Española de Protección de Datos (www.aepd.es) si consideras que no se han atendido correctamente tus derechos.</p>
@@ -355,16 +407,17 @@
       subtitleBarrio:"La Teixonera es un barrio tranquilo y bien comunicado en la parte alta de Barcelona, junto al Parc de la Vall d'Hebron, con fácil acceso a metro y autobuses hacia el centro de la ciudad.",
       subtitlePiso:"El piso está en muy buen estado, listo para entrar a vivir: 54 m² con 3 habitaciones y 1 baño, cocina equipada, mucha luz natural y suelo de parqué en todas las estancias.",
       subtitleCta:"Rellena tus datos y te contactamos para organizar la visita.",
+      cardContacto:"Contacto", cardSobreVosotros:"Sobre vosotros", cardLaboral:"Situación laboral", cardIngresos:"Ingresos", cardVisita:"Visita", cardPrivacidad:"Privacidad",
       labelNombre:"Nombre", labelTelefono:"WhatsApp / Teléfono",
       labelPresentacion:"Cuéntanos un poco sobre ti (o vosotros)", placeholderPresentacion:"¿Sois pareja, familia, compañeros de piso? ¿Alguna mascota?...",
       labelOcupantes:"¿Cuántas personas vivirán en el piso?",
       labelFirmante1:"Situación laboral del primer firmante", labelFirmante2:"Situación laboral del segundo firmante (si lo hay)",
-      btnAsalariado:"Asalariado/a", btnAutonomo:"Autónomo/a", btnSinSegundo:"No hay segundo firmante",
+      btnAsalariadoMas1:"Asalariado/a (+1 año antigüedad)", btnAsalariadoMenos1:"Asalariado/a (-1 año antigüedad)", btnAutonomo:"Autónomo/a", btnSinSegundo:"No hay segundo firmante",
       labelIngresos:"Ingresos netos mensuales (de los firmantes, juntos)", placeholderIngresos:"Ej. 2200",
       alquilerRefText:"El alquiler de este piso es de {precio} €/mes.", ingresosPorcentajeText:"El alquiler representa aproximadamente el {pct}% de vuestros ingresos.",
       labelTipoTrabajador:"¿Dónde trabajas?", btnTrabajoEspana:"Trabajo en España", btnNomadaDigital:"Soy nómada digital",
       selectError:"Selecciona una opción.", alertIngresos:"Indica vuestros ingresos aproximados.",
-      labelTrabajo:"¿A qué os dedicáis y cuánto ingresáis aproximadamente?", placeholderTrabajo:"Ej. Trabajo indefinido en... / Autónomo desde..., ingresos aprox. de...",
+      labelTrabajo:"¿A qué os dedicáis?", placeholderTrabajo:"Ej. Trabajo indefinido en... / Autónomo desde...",
       docTitle:"Después de la visita se pedirá esta documentación — no hace falta ahora, pero ayuda tenerla lista:",
       doc1:"DNI / NIE", doc2:"Últimas 3 nóminas (o declaraciones de IVA/IRPF si eres autónomo)", doc3:"Contrato de trabajo o vida laboral", doc4:"Última declaración de la renta",
       labelVisita:"¿Cuándo puedes hacer la visita?", btnHoy:"Hoy", btnManana:"Mañana", btnOtro:"Otro",
@@ -385,16 +438,17 @@
       subtitleBarrio:"La Teixonera és un barri tranquil i ben comunicat a la part alta de Barcelona, al costat del Parc de la Vall d'Hebron, amb fàcil accés a metro i autobusos cap al centre de la ciutat.",
       subtitlePiso:"El pis està en molt bon estat, a punt per entrar-hi a viure: 54 m² amb 3 habitacions i 1 bany, cuina equipada, molta llum natural i terra de parquet a totes les estances.",
       subtitleCta:"Omple les teves dades i et contactem per organitzar la visita.",
+      cardContacto:"Contacte", cardSobreVosotros:"Sobre vosaltres", cardLaboral:"Situació laboral", cardIngresos:"Ingressos", cardVisita:"Visita", cardPrivacidad:"Privacitat",
       labelNombre:"Nom", labelTelefono:"WhatsApp / Telèfon",
       labelPresentacion:"Explica'ns una mica sobre tu (o vosaltres)", placeholderPresentacion:"Sou parella, família, companys de pis? Alguna mascota?...",
       labelOcupantes:"Quantes persones viuran al pis?",
       labelFirmante1:"Situació laboral del primer signant", labelFirmante2:"Situació laboral del segon signant (si n'hi ha)",
-      btnAsalariado:"Assalariat/ada", btnAutonomo:"Autònom/a", btnSinSegundo:"No hi ha segon signant",
+      btnAsalariadoMas1:"Assalariat/ada (+1 any d'antiguitat)", btnAsalariadoMenos1:"Assalariat/ada (-1 any d'antiguitat)", btnAutonomo:"Autònom/a", btnSinSegundo:"No hi ha segon signant",
       labelIngresos:"Ingressos nets mensuals (dels signants, junts)", placeholderIngresos:"Ex. 2200",
       alquilerRefText:"El lloguer d'aquest pis és de {precio} €/mes.", ingresosPorcentajeText:"El lloguer representa aproximadament el {pct}% dels vostres ingressos.",
       labelTipoTrabajador:"On treballes?", btnTrabajoEspana:"Treballo a Espanya", btnNomadaDigital:"Sóc nòmada digital",
       selectError:"Selecciona una opció.", alertIngresos:"Indica els vostres ingressos aproximats.",
-      labelTrabajo:"A què us dediqueu i quant ingresseu aproximadament?", placeholderTrabajo:"Ex. Treball indefinit a... / Autònom des de..., ingressos aprox. de...",
+      labelTrabajo:"A què us dediqueu?", placeholderTrabajo:"Ex. Treball indefinit a... / Autònom des de...",
       docTitle:"Després de la visita es demanarà aquesta documentació — no cal ara, però ajuda tenir-la a punt:",
       doc1:"DNI / NIE", doc2:"Últimes 3 nòmines (o declaracions d'IVA/IRPF si ets autònom)", doc3:"Contracte de treball o vida laboral", doc4:"Última declaració de la renda",
       labelVisita:"Quan pots fer la visita?", btnHoy:"Avui", btnManana:"Demà", btnOtro:"Un altre dia",
@@ -415,16 +469,17 @@
       subtitleBarrio:"La Teixonera is a quiet, well-connected neighborhood in the upper part of Barcelona, next to Parc de la Vall d'Hebron, with easy metro and bus access to the city center.",
       subtitlePiso:"The flat is in very good condition, move-in ready: 54 m² with 3 bedrooms and 1 bathroom, fitted kitchen, plenty of natural light and parquet flooring throughout.",
       subtitleCta:"Fill in your details and we'll contact you to arrange a viewing.",
+      cardContacto:"Contact", cardSobreVosotros:"About you", cardLaboral:"Employment", cardIngresos:"Income", cardVisita:"Viewing", cardPrivacidad:"Privacy",
       labelNombre:"Name", labelTelefono:"WhatsApp / Phone",
       labelPresentacion:"Tell us a bit about yourself (or you both)", placeholderPresentacion:"Are you a couple, family, flatmates? Any pets?...",
       labelOcupantes:"How many people will live in the flat?",
       labelFirmante1:"Employment status of the first signer", labelFirmante2:"Employment status of the second signer (if any)",
-      btnAsalariado:"Employee", btnAutonomo:"Self-employed", btnSinSegundo:"No second signer",
+      btnAsalariadoMas1:"Employee (1+ year in role)", btnAsalariadoMenos1:"Employee (under 1 year in role)", btnAutonomo:"Self-employed", btnSinSegundo:"No second signer",
       labelIngresos:"Net monthly income (signers combined)", placeholderIngresos:"E.g. 2200",
       alquilerRefText:"The rent for this flat is {precio} €/month.", ingresosPorcentajeText:"The rent represents approximately {pct}% of your income.",
       labelTipoTrabajador:"Where do you work?", btnTrabajoEspana:"I work in Spain", btnNomadaDigital:"I'm a digital nomad",
       selectError:"Select an option.", alertIngresos:"Please indicate your approximate income.",
-      labelTrabajo:"What do you do and roughly how much do you earn?", placeholderTrabajo:"E.g. Permanent job at... / Self-employed since..., approx. income of...",
+      labelTrabajo:"What do you do?", placeholderTrabajo:"E.g. Permanent job at... / Self-employed since...",
       docTitle:"After the viewing we'll ask for this documentation — no need now, but it helps to have it ready:",
       doc1:"ID / NIE", doc2:"Last 3 payslips (or VAT/income tax filings if self-employed)", doc3:"Employment contract or work history", doc4:"Latest income tax return",
       labelVisita:"When can you view the flat?", btnHoy:"Today", btnManana:"Tomorrow", btnOtro:"Other",
@@ -445,16 +500,17 @@
       subtitleBarrio:"La Teixonera est un quartier calme et bien desservi dans la partie haute de Barcelone, à côté du Parc de la Vall d'Hebron, avec un accès facile au métro et aux bus vers le centre-ville.",
       subtitlePiso:"L'appartement est en très bon état, prêt à emménager : 54 m² avec 3 chambres et 1 salle de bain, cuisine équipée, beaucoup de lumière naturelle et parquet dans toutes les pièces.",
       subtitleCta:"Remplissez vos coordonnées et nous vous contacterons pour organiser la visite.",
+      cardContacto:"Contact", cardSobreVosotros:"À propos de vous", cardLaboral:"Situation professionnelle", cardIngresos:"Revenus", cardVisita:"Visite", cardPrivacidad:"Confidentialité",
       labelNombre:"Nom", labelTelefono:"WhatsApp / Téléphone",
       labelPresentacion:"Parlez-nous un peu de vous (ou de vous deux)", placeholderPresentacion:"Êtes-vous en couple, en famille, colocataires ? Un animal de compagnie ?...",
       labelOcupantes:"Combien de personnes vivront dans l'appartement ?",
       labelFirmante1:"Situation professionnelle du premier signataire", labelFirmante2:"Situation professionnelle du second signataire (le cas échéant)",
-      btnAsalariado:"Salarié(e)", btnAutonomo:"Indépendant(e)", btnSinSegundo:"Pas de second signataire",
+      btnAsalariadoMas1:"Salarié(e) (+1 an d'ancienneté)", btnAsalariadoMenos1:"Salarié(e) (-1 an d'ancienneté)", btnAutonomo:"Indépendant(e)", btnSinSegundo:"Pas de second signataire",
       labelIngresos:"Revenus nets mensuels (signataires réunis)", placeholderIngresos:"Ex. 2200",
       alquilerRefText:"Le loyer de cet appartement est de {precio} €/mois.", ingresosPorcentajeText:"Le loyer représente environ {pct}% de vos revenus.",
       labelTipoTrabajador:"Où travaillez-vous ?", btnTrabajoEspana:"Je travaille en Espagne", btnNomadaDigital:"Je suis nomade numérique",
       selectError:"Sélectionnez une option.", alertIngresos:"Indiquez vos revenus approximatifs.",
-      labelTrabajo:"Que faites-vous et quel est votre revenu approximatif ?", placeholderTrabajo:"Ex. CDI chez... / Indépendant depuis..., revenus approx. de...",
+      labelTrabajo:"Que faites-vous ?", placeholderTrabajo:"Ex. CDI chez... / Indépendant depuis...",
       docTitle:"Après la visite, ces documents seront demandés — pas besoin maintenant, mais mieux vaut les avoir prêts :",
       doc1:"Carte d'identité / NIE", doc2:"3 dernières fiches de paie (ou déclarations TVA/IRPF si indépendant)", doc3:"Contrat de travail ou historique professionnel", doc4:"Dernière déclaration de revenus",
       labelVisita:"Quand pouvez-vous visiter ?", btnHoy:"Aujourd'hui", btnManana:"Demain", btnOtro:"Autre",
@@ -623,12 +679,20 @@
   document.getElementById('leadForm').addEventListener('submit', async (e)=>{
     e.preventDefault();
     const dict = i18n[currentLang];
-    if(!visitaSeleccionada){
-      alert(dict.alertVisita);
-      return;
-    }
+
+    document.getElementById('visitaError').classList.remove('show');
+    document.getElementById('ocupantesError').classList.remove('show');
+    document.getElementById('firmante1Error').classList.remove('show');
+    document.getElementById('firmante2Error').classList.remove('show');
+    document.getElementById('ingresosError').classList.remove('show');
+    document.getElementById('tipoTrabajadorError').classList.remove('show');
+    document.getElementById('consentError').classList.remove('show');
 
     let firstInvalid = null;
+    if(!visitaSeleccionada){
+      document.getElementById('visitaError').classList.add('show');
+      firstInvalid = firstInvalid || visitaGroup;
+    }
     if(!ocupantesSeleccionado){
       document.getElementById('ocupantesError').classList.add('show');
       firstInvalid = firstInvalid || ocupantesGroup;
@@ -650,19 +714,16 @@
       document.getElementById('tipoTrabajadorError').classList.add('show');
       firstInvalid = firstInvalid || tipoTrabajadorGroup;
     }
-    if(firstInvalid){
-      firstInvalid.closest('.field').scrollIntoView({behavior:'smooth', block:'center'});
-      return;
-    }
-
     const consentCheckbox = document.getElementById('consentCheckbox');
     const consentError = document.getElementById('consentError');
     if(!consentCheckbox.checked){
       consentError.classList.add('show');
-      consentCheckbox.closest('.form-card').scrollIntoView({behavior:'smooth', block:'center'});
+      firstInvalid = firstInvalid || consentCheckbox;
+    }
+    if(firstInvalid){
+      firstInvalid.closest('.field, .form-card').scrollIntoView({behavior:'smooth', block:'center'});
       return;
     }
-    consentError.classList.remove('show');
 
     const btn = e.target.querySelector('button[type="submit"]');
     btn.disabled = true;
