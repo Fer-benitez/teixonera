@@ -89,7 +89,7 @@
   .field{margin-bottom:18px;}
   .field:last-child{margin-bottom:0;}
   .field label{font-size:12px;font-weight:700;color:var(--navy-dark);text-transform:uppercase;letter-spacing:0.03em;margin-bottom:8px;display:block;}
-  .field input[type="text"], .field input[type="tel"], .field textarea{
+  .field input[type="text"], .field input[type="tel"], .field input[type="number"], .field textarea{
     width:100%;background:var(--white);border:1.5px solid var(--border);color:var(--text);
     padding:12px 14px;font-family:'Inter',sans-serif;font-size:15px;border-radius:8px;
     transition:border-color .2s var(--ease);
@@ -209,7 +209,7 @@
   <div class="stat"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg><span class="val">54 m²</span><span class="lbl" data-i18n="statConstruidos">Construidos</span></div>
   <div class="stat"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M4 21V9l8-6 8 6v12M9 21v-6h6v6"/></svg><span class="val">3ª</span><span class="lbl" data-i18n="statPlanta">Planta</span></div>
   <div class="stat"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="6" y="2" width="12" height="20" rx="1.5"/><path d="M12 6.5l-2.3 2.3h4.6z" fill="currentColor" stroke="none"/><path d="M12 17.5l-2.3-2.3h4.6z" fill="currentColor" stroke="none"/></svg><span class="val" data-i18n="statSi">Sí</span><span class="lbl" data-i18n="statAscensor">Ascensor</span></div>
-  <div class="stat"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M19 5h-6.5a1 1 0 0 0-.7.3L4 13l7 7 7.7-7.8a1 1 0 0 0 .3-.7V6a1 1 0 0 0-1-1z"/><circle cx="15" cy="9" r="1.3" fill="currentColor" stroke="none"/></svg><span class="val">826€</span><span class="lbl" data-i18n="statAlquiler">Alquiler / mes</span></div>
+  <div class="stat"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M19 5h-6.5a1 1 0 0 0-.7.3L4 13l7 7 7.7-7.8a1 1 0 0 0 .3-.7V6a1 1 0 0 0-1-1z"/><circle cx="15" cy="9" r="1.3" fill="currentColor" stroke="none"/></svg><span class="val">886€</span><span class="lbl" data-i18n="statAlquiler">Alquiler / mes</span></div>
   <div class="stat"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><rect x="2" y="6" width="20" height="13" rx="2"/><path d="M2 10h20"/><circle cx="7" cy="14.5" r="1"/></svg><span class="val">1 mes</span><span class="lbl" data-i18n="statFianza">Fianza</span></div>
   <div class="stat"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 21s-7-6.5-7-11.5A7 7 0 0 1 19 9.5C19 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.3"/></svg><span class="val">La Teixonera</span><span class="lbl" data-i18n="statBarrio">Barrio</span></div>
 </div>
@@ -235,6 +235,55 @@
         <label for="presentacion" data-i18n="labelPresentacion">Cuéntanos un poco sobre ti (o vosotros)</label>
         <textarea id="presentacion" required data-i18n-placeholder="placeholderPresentacion" placeholder="¿Sois pareja, familia, compañeros de piso? ¿Alguna mascota?..."></textarea>
       </div>
+
+      <div class="field">
+        <label data-i18n="labelOcupantes">¿Cuántas personas vivirán en el piso?</label>
+        <div class="choice-group" id="ocupantesGroup">
+          <button type="button" class="choice-btn" data-val="1">1</button>
+          <button type="button" class="choice-btn" data-val="2">2</button>
+          <button type="button" class="choice-btn" data-val="3">3</button>
+          <button type="button" class="choice-btn" data-val="4">4</button>
+          <button type="button" class="choice-btn" data-val="5+">5+</button>
+        </div>
+        <p class="choice-error" id="ocupantesError" data-i18n="selectError">Selecciona una opción.</p>
+      </div>
+
+      <div class="field">
+        <label data-i18n="labelFirmante1">Situación laboral del primer firmante</label>
+        <div class="choice-group" id="firmante1Group">
+          <button type="button" class="choice-btn" data-val="Asalariado" data-i18n="btnAsalariado">Asalariado/a</button>
+          <button type="button" class="choice-btn" data-val="Autónomo" data-i18n="btnAutonomo">Autónomo/a</button>
+        </div>
+        <p class="choice-error" id="firmante1Error" data-i18n="selectError">Selecciona una opción.</p>
+      </div>
+
+      <div class="field">
+        <label data-i18n="labelFirmante2">Situación laboral del segundo firmante (si lo hay)</label>
+        <div class="choice-group" id="firmante2Group">
+          <button type="button" class="choice-btn" data-val="Asalariado" data-i18n="btnAsalariado">Asalariado/a</button>
+          <button type="button" class="choice-btn" data-val="Autónomo" data-i18n="btnAutonomo">Autónomo/a</button>
+          <button type="button" class="choice-btn" data-val="No hay segundo firmante" data-i18n="btnSinSegundo">No hay segundo firmante</button>
+        </div>
+        <p class="choice-error" id="firmante2Error" data-i18n="selectError">Selecciona una opción.</p>
+      </div>
+
+      <div class="field">
+        <label for="ingresos" data-i18n="labelIngresos">Ingresos netos mensuales (de los firmantes, juntos)</label>
+        <p class="field-note" id="alquilerRefText" style="margin-bottom:8px;"></p>
+        <input type="number" id="ingresos" inputmode="numeric" min="0" data-i18n-placeholder="placeholderIngresos" placeholder="Ej. 2200">
+        <p class="field-note" id="ingresosPorcentaje" style="margin-top:8px;display:none;"></p>
+        <p class="choice-error" id="ingresosError" data-i18n="alertIngresos">Indica vuestros ingresos aproximados.</p>
+      </div>
+
+      <div class="field">
+        <label data-i18n="labelTipoTrabajador">¿Dónde trabajas?</label>
+        <div class="choice-group" id="tipoTrabajadorGroup">
+          <button type="button" class="choice-btn" data-val="Trabajo en España" data-i18n="btnTrabajoEspana">Trabajo en España</button>
+          <button type="button" class="choice-btn" data-val="Nómada digital" data-i18n="btnNomadaDigital">Soy nómada digital</button>
+        </div>
+        <p class="choice-error" id="tipoTrabajadorError" data-i18n="selectError">Selecciona una opción.</p>
+      </div>
+
       <div class="field">
         <label for="trabajo" data-i18n="labelTrabajo">¿A qué os dedicáis y cuánto ingresáis aproximadamente?</label>
         <textarea id="trabajo" required data-i18n-placeholder="placeholderTrabajo" placeholder="Ej. Trabajo indefinido en... / Autónomo desde..., ingresos aprox. de..."></textarea>
@@ -297,6 +346,7 @@
 <script>
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzwJe2nw_bpxIqsZKvW3mj1eMkG4OkTSPYjrkD6BvPbXze5Q1z0e90kUMqcsB-k-hlgMw/exec';
   const PISO_NOMBRE = 'Roig i Solé 16';
+  const ALQUILER_PRECIO = 886;
 
   const i18n = {
     es: {
@@ -307,6 +357,13 @@
       subtitleCta:"Rellena tus datos y te contactamos para organizar la visita.",
       labelNombre:"Nombre", labelTelefono:"WhatsApp / Teléfono",
       labelPresentacion:"Cuéntanos un poco sobre ti (o vosotros)", placeholderPresentacion:"¿Sois pareja, familia, compañeros de piso? ¿Alguna mascota?...",
+      labelOcupantes:"¿Cuántas personas vivirán en el piso?",
+      labelFirmante1:"Situación laboral del primer firmante", labelFirmante2:"Situación laboral del segundo firmante (si lo hay)",
+      btnAsalariado:"Asalariado/a", btnAutonomo:"Autónomo/a", btnSinSegundo:"No hay segundo firmante",
+      labelIngresos:"Ingresos netos mensuales (de los firmantes, juntos)", placeholderIngresos:"Ej. 2200",
+      alquilerRefText:"El alquiler de este piso es de {precio} €/mes.", ingresosPorcentajeText:"El alquiler representa aproximadamente el {pct}% de vuestros ingresos.",
+      labelTipoTrabajador:"¿Dónde trabajas?", btnTrabajoEspana:"Trabajo en España", btnNomadaDigital:"Soy nómada digital",
+      selectError:"Selecciona una opción.", alertIngresos:"Indica vuestros ingresos aproximados.",
       labelTrabajo:"¿A qué os dedicáis y cuánto ingresáis aproximadamente?", placeholderTrabajo:"Ej. Trabajo indefinido en... / Autónomo desde..., ingresos aprox. de...",
       docTitle:"Después de la visita se pedirá esta documentación — no hace falta ahora, pero ayuda tenerla lista:",
       doc1:"DNI / NIE", doc2:"Últimas 3 nóminas (o declaraciones de IVA/IRPF si eres autónomo)", doc3:"Contrato de trabajo o vida laboral", doc4:"Última declaración de la renta",
@@ -330,6 +387,13 @@
       subtitleCta:"Omple les teves dades i et contactem per organitzar la visita.",
       labelNombre:"Nom", labelTelefono:"WhatsApp / Telèfon",
       labelPresentacion:"Explica'ns una mica sobre tu (o vosaltres)", placeholderPresentacion:"Sou parella, família, companys de pis? Alguna mascota?...",
+      labelOcupantes:"Quantes persones viuran al pis?",
+      labelFirmante1:"Situació laboral del primer signant", labelFirmante2:"Situació laboral del segon signant (si n'hi ha)",
+      btnAsalariado:"Assalariat/ada", btnAutonomo:"Autònom/a", btnSinSegundo:"No hi ha segon signant",
+      labelIngresos:"Ingressos nets mensuals (dels signants, junts)", placeholderIngresos:"Ex. 2200",
+      alquilerRefText:"El lloguer d'aquest pis és de {precio} €/mes.", ingresosPorcentajeText:"El lloguer representa aproximadament el {pct}% dels vostres ingressos.",
+      labelTipoTrabajador:"On treballes?", btnTrabajoEspana:"Treballo a Espanya", btnNomadaDigital:"Sóc nòmada digital",
+      selectError:"Selecciona una opció.", alertIngresos:"Indica els vostres ingressos aproximats.",
       labelTrabajo:"A què us dediqueu i quant ingresseu aproximadament?", placeholderTrabajo:"Ex. Treball indefinit a... / Autònom des de..., ingressos aprox. de...",
       docTitle:"Després de la visita es demanarà aquesta documentació — no cal ara, però ajuda tenir-la a punt:",
       doc1:"DNI / NIE", doc2:"Últimes 3 nòmines (o declaracions d'IVA/IRPF si ets autònom)", doc3:"Contracte de treball o vida laboral", doc4:"Última declaració de la renda",
@@ -353,6 +417,13 @@
       subtitleCta:"Fill in your details and we'll contact you to arrange a viewing.",
       labelNombre:"Name", labelTelefono:"WhatsApp / Phone",
       labelPresentacion:"Tell us a bit about yourself (or you both)", placeholderPresentacion:"Are you a couple, family, flatmates? Any pets?...",
+      labelOcupantes:"How many people will live in the flat?",
+      labelFirmante1:"Employment status of the first signer", labelFirmante2:"Employment status of the second signer (if any)",
+      btnAsalariado:"Employee", btnAutonomo:"Self-employed", btnSinSegundo:"No second signer",
+      labelIngresos:"Net monthly income (signers combined)", placeholderIngresos:"E.g. 2200",
+      alquilerRefText:"The rent for this flat is {precio} €/month.", ingresosPorcentajeText:"The rent represents approximately {pct}% of your income.",
+      labelTipoTrabajador:"Where do you work?", btnTrabajoEspana:"I work in Spain", btnNomadaDigital:"I'm a digital nomad",
+      selectError:"Select an option.", alertIngresos:"Please indicate your approximate income.",
       labelTrabajo:"What do you do and roughly how much do you earn?", placeholderTrabajo:"E.g. Permanent job at... / Self-employed since..., approx. income of...",
       docTitle:"After the viewing we'll ask for this documentation — no need now, but it helps to have it ready:",
       doc1:"ID / NIE", doc2:"Last 3 payslips (or VAT/income tax filings if self-employed)", doc3:"Employment contract or work history", doc4:"Latest income tax return",
@@ -376,6 +447,13 @@
       subtitleCta:"Remplissez vos coordonnées et nous vous contacterons pour organiser la visite.",
       labelNombre:"Nom", labelTelefono:"WhatsApp / Téléphone",
       labelPresentacion:"Parlez-nous un peu de vous (ou de vous deux)", placeholderPresentacion:"Êtes-vous en couple, en famille, colocataires ? Un animal de compagnie ?...",
+      labelOcupantes:"Combien de personnes vivront dans l'appartement ?",
+      labelFirmante1:"Situation professionnelle du premier signataire", labelFirmante2:"Situation professionnelle du second signataire (le cas échéant)",
+      btnAsalariado:"Salarié(e)", btnAutonomo:"Indépendant(e)", btnSinSegundo:"Pas de second signataire",
+      labelIngresos:"Revenus nets mensuels (signataires réunis)", placeholderIngresos:"Ex. 2200",
+      alquilerRefText:"Le loyer de cet appartement est de {precio} €/mois.", ingresosPorcentajeText:"Le loyer représente environ {pct}% de vos revenus.",
+      labelTipoTrabajador:"Où travaillez-vous ?", btnTrabajoEspana:"Je travaille en Espagne", btnNomadaDigital:"Je suis nomade numérique",
+      selectError:"Sélectionnez une option.", alertIngresos:"Indiquez vos revenus approximatifs.",
       labelTrabajo:"Que faites-vous et quel est votre revenu approximatif ?", placeholderTrabajo:"Ex. CDI chez... / Indépendant depuis..., revenus approx. de...",
       docTitle:"Après la visite, ces documents seront demandés — pas besoin maintenant, mais mieux vaut les avoir prêts :",
       doc1:"Carte d'identité / NIE", doc2:"3 dernières fiches de paie (ou déclarations TVA/IRPF si indépendant)", doc3:"Contrat de travail ou historique professionnel", doc4:"Dernière déclaration de revenus",
@@ -437,6 +515,63 @@
   const visitaOtro = document.getElementById('visitaOtro');
   const visitaHoraLabel = document.getElementById('visitaHoraLabel');
 
+  let ocupantesSeleccionado = '';
+  let firmante1Seleccionado = '';
+  let firmante2Seleccionado = '';
+  let tipoTrabajadorSeleccionado = '';
+  const ocupantesGroup = document.getElementById('ocupantesGroup');
+  const firmante1Group = document.getElementById('firmante1Group');
+  const firmante2Group = document.getElementById('firmante2Group');
+  const tipoTrabajadorGroup = document.getElementById('tipoTrabajadorGroup');
+  const ingresosInput = document.getElementById('ingresos');
+  const alquilerRefText = document.getElementById('alquilerRefText');
+  const ingresosPorcentaje = document.getElementById('ingresosPorcentaje');
+
+  function updateIngresosUI(){
+    const dict = i18n[currentLang];
+    alquilerRefText.textContent = dict.alquilerRefText.replace('{precio}', ALQUILER_PRECIO.toLocaleString('es-ES'));
+    const ingresos = parseFloat(ingresosInput.value);
+    if(ingresos && ingresos > 0){
+      const pct = Math.round((ALQUILER_PRECIO / ingresos) * 100);
+      ingresosPorcentaje.textContent = dict.ingresosPorcentajeText.replace('{pct}', pct);
+      ingresosPorcentaje.style.display = 'block';
+    } else {
+      ingresosPorcentaje.style.display = 'none';
+    }
+  }
+
+  function setupChoiceGroup(group, onSelect){
+    group.querySelectorAll('.choice-btn').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        group.querySelectorAll('.choice-btn').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        onSelect(btn.dataset.val);
+      });
+    });
+  }
+
+  setupChoiceGroup(ocupantesGroup, val=>{
+    ocupantesSeleccionado = val;
+    document.getElementById('ocupantesError').classList.remove('show');
+  });
+  setupChoiceGroup(firmante1Group, val=>{
+    firmante1Seleccionado = val;
+    document.getElementById('firmante1Error').classList.remove('show');
+  });
+  setupChoiceGroup(firmante2Group, val=>{
+    firmante2Seleccionado = val;
+    document.getElementById('firmante2Error').classList.remove('show');
+  });
+  setupChoiceGroup(tipoTrabajadorGroup, val=>{
+    tipoTrabajadorSeleccionado = val;
+    document.getElementById('tipoTrabajadorError').classList.remove('show');
+  });
+
+  ingresosInput.addEventListener('input', ()=>{
+    updateIngresosUI();
+    if(ingresosInput.value) document.getElementById('ingresosError').classList.remove('show');
+  });
+
   function applyLang(lang){
     currentLang = lang;
     const dict = i18n[lang];
@@ -455,6 +590,7 @@
       visitaHoraLabel.textContent = dict.labelFranja;
       visitaOtro.placeholder = dict.placeholderFranja;
     }
+    updateIngresosUI();
   }
 
   document.querySelectorAll('.lang-btn').forEach(btn=>{
@@ -491,6 +627,34 @@
       alert(dict.alertVisita);
       return;
     }
+
+    let firstInvalid = null;
+    if(!ocupantesSeleccionado){
+      document.getElementById('ocupantesError').classList.add('show');
+      firstInvalid = firstInvalid || ocupantesGroup;
+    }
+    if(!firmante1Seleccionado){
+      document.getElementById('firmante1Error').classList.add('show');
+      firstInvalid = firstInvalid || firmante1Group;
+    }
+    if(!firmante2Seleccionado){
+      document.getElementById('firmante2Error').classList.add('show');
+      firstInvalid = firstInvalid || firmante2Group;
+    }
+    const ingresosVal = parseFloat(ingresosInput.value);
+    if(!ingresosVal || ingresosVal <= 0){
+      document.getElementById('ingresosError').classList.add('show');
+      firstInvalid = firstInvalid || ingresosInput;
+    }
+    if(!tipoTrabajadorSeleccionado){
+      document.getElementById('tipoTrabajadorError').classList.add('show');
+      firstInvalid = firstInvalid || tipoTrabajadorGroup;
+    }
+    if(firstInvalid){
+      firstInvalid.closest('.field').scrollIntoView({behavior:'smooth', block:'center'});
+      return;
+    }
+
     const consentCheckbox = document.getElementById('consentCheckbox');
     const consentError = document.getElementById('consentError');
     if(!consentCheckbox.checked){
@@ -516,6 +680,12 @@
           telefono: document.getElementById('telefono').value.trim(),
           pisoInteres: PISO_NOMBRE,
           presentacion: document.getElementById('presentacion').value.trim(),
+          ocupantes: ocupantesSeleccionado,
+          situacionLaboralFirmante1: firmante1Seleccionado,
+          situacionLaboralFirmante2: firmante2Seleccionado,
+          ingresosMensuales: ingresosVal,
+          porcentajeAlquiler: Math.round((ALQUILER_PRECIO / ingresosVal) * 100),
+          tipoTrabajador: tipoTrabajadorSeleccionado,
           trabajo: document.getElementById('trabajo').value.trim(),
           disponibilidad: disponibilidad,
           consentimientoRgpd: 'Sí',
@@ -528,12 +698,23 @@
       visitaOtro.style.display = 'none';
       visitaHoraLabel.style.display = 'none';
       visitaSeleccionada = '';
+      ocupantesGroup.querySelectorAll('.choice-btn').forEach(b=>b.classList.remove('active'));
+      firmante1Group.querySelectorAll('.choice-btn').forEach(b=>b.classList.remove('active'));
+      firmante2Group.querySelectorAll('.choice-btn').forEach(b=>b.classList.remove('active'));
+      tipoTrabajadorGroup.querySelectorAll('.choice-btn').forEach(b=>b.classList.remove('active'));
+      ocupantesSeleccionado = '';
+      firmante1Seleccionado = '';
+      firmante2Seleccionado = '';
+      tipoTrabajadorSeleccionado = '';
+      ingresosPorcentaje.style.display = 'none';
     } catch(err){
       alert(dict.alertError);
     }
     btn.disabled = false;
     btn.textContent = dict.btnEnviar;
   });
+
+  updateIngresosUI();
 </script>
 
 </body>
